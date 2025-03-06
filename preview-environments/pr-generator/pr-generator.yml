@@ -12,6 +12,8 @@ spec:
         owner: KostLinux
         repo: gitops-cert-level-3-examples
       requeueAfterSeconds: 180
+      labels:
+        - preview-ready
   template:
     metadata:
       name: 'myapp-{{.branch}}'
@@ -26,7 +28,7 @@ spec:
       project: "default"
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'preview-{{.branch_slug}}'
+        namespace: 'preview-ready'
       syncPolicy:
         automated:
           prune: true  
